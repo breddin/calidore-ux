@@ -8,6 +8,8 @@ node_modules/
 
 # Build output
 dist/
+lambda/.aws-sam/
+lambda/src/node_modules/
 
 # System files
 .DS_Store
