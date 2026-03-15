@@ -12,6 +12,9 @@ const agState = {
 // ── Claude model ─────────────────────────────────────────────────
 const CLAUDE_MODEL = 'claude-opus-4-5';
 
+// ── API endpoint — Vite dev proxy or deployed Lambda proxy ────────
+const API_URL = (import.meta.env.VITE_API_URL || '') + '/api/messages';
+
 // ── Panel open / close ────────────────────────────────────────────
 export function openAgent(tier) {
   agState.tier = tier || 'fleet';
@@ -215,7 +218,7 @@ async function callClaudeAPI(t, scen) {
   const systemPrompt = buildSystemPrompt(agState.tier);
 
   try {
-    const response = await fetch('/api/messages', {
+    const response = await fetch(API_URL, {
       method: 'POST',
       headers: {
         'anthropic-version': '2023-06-01',

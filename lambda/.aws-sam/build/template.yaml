@@ -1,0 +1,57 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: "Calidore UX \u2014 Anthropic proxy Lambda"
+Globals:
+  Function:
+    Runtime: nodejs20.x
+    Timeout: 60
+    MemorySize: 256
+    Environment:
+      Variables:
+        ANTHROPIC_API_KEY_PARAM: /calidore-ux/anthropic-api-key
+Resources:
+  AnthropicProxyFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: calidore-ux-anthropic-proxy
+      Handler: index.handler
+      CodeUri: AnthropicProxyFunction
+      Policies:
+      - SSMParameterReadPolicy:
+          ParameterName: calidore-ux/anthropic-api-key
+      Events:
+        ProxyPost:
+          Type: HttpApi
+          Properties:
+            ApiId:
+              Ref: ProxyApi
+            Path: /api/messages
+            Method: POST
+        ProxyOptions:
+          Type: HttpApi
+          Properties:
+            ApiId:
+              Ref: ProxyApi
+            Path: /api/messages
+            Method: OPTIONS
+    Metadata:
+      SamResourceId: AnthropicProxyFunction
+  ProxyApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: $default
+      CorsConfiguration:
+        AllowOrigins:
+        - '*'
+        AllowMethods:
+        - POST
+        - OPTIONS
+        AllowHeaders:
+        - content-type
+        - anthropic-version
+        MaxAge: 86400
+Outputs:
+  ApiUrl:
+    Description: Anthropic proxy API URL
+    Value:
+      Fn::Sub: https://${ProxyApi}.execute-api.${AWS::Region}.amazonaws.com

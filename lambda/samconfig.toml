@@ -1,0 +1,11 @@
+version = 0.1
+
+[default.deploy.parameters]
+stack_name             = "calidore-ux-proxy"
+region                 = "us-east-1"
+confirm_changeset      = false
+capabilities           = "CAPABILITY_IAM"
+profile                = "breddin-personal"
+s3_prefix              = "calidore-ux-proxy"
+resolve_s3             = true
+no_fail_on_empty_changeset = true
