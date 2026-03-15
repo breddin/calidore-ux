@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpsCommand — AI Logistics Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+
+<!-- ══ SIDEBAR ═══════════════════════════════════════════════ -->
+<nav class="sidebar">
+  <div class="sb-logo-row">
+    <div class="sb-logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4z"/></svg>
+    </div>
+    <div class="sb-logo-text">OpsCommand<span>Logistics · Live</span></div>
+  </div>
+  <div class="sb-nav">
+    <div class="sb-section">Main</div>
+    <div class="sbl active" onclick="scrollToSec('sec-top')">
+      <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+      <span class="sbl-label">Dashboard</span>
+    </div>
+    <div class="sbl" onclick="scrollToSec('sec-fin')">
+      <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+      <span class="sbl-label">Financials</span>
+    </div>
+    <div class="sbl" onclick="scrollToSec('sec-asset')">
+      <svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zm-.5 1.5 1.96 2.5H17V9.5h2.5zM6 18c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm2.22-3c-.55-.61-1.33-1-2.22-1s-1.67.39-2.22 1H3V6h12v9H8.22zm9.78 3c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/></svg>
+      <span class="sbl-label">Fleet</span>
+    </div>
+    <div class="sb-section">Operations</div>
+    <div class="sbl" onclick="scrollToSec('sec-maint')">
+      <svg viewBox="0 0 24 24"><path d="M13.78 15.3L19.78 21.3L21.89 19.14L15.89 13.14L13.78 15.3M17.5 11.4C17.5 11.4 19.76 9.23 20.5 6.5C17.78 7.24 15.6 9.5 15.6 9.5L13.93 7.83C14.71 6.24 14.68 4.3 13.5 3C11.13 5.37 11.68 8.42 12.5 9.5L7 15L9 17L14.5 11.5L17.5 11.4M6 15L3 18L5 20L7.4 17.6L6 15Z"/></svg>
+      <span class="sbl-label">Maintenance</span>
+    </div>
+    <div class="sbl" onclick="scrollToSec('sec-channels')">
+      <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+      <span class="sbl-label">Channels</span>
+    </div>
+    <div class="sbl" onclick="scrollToSec('sec-trends')">
+      <svg viewBox="0 0 24 24"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg>
+      <span class="sbl-label">Trends</span>
+    </div>
+    <div class="sbl" onclick="scrollToSec('sec-issues')">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+      <span class="sbl-label">Issues</span>
+    </div>
+    <div class="sb-section">Intelligence</div>
+    <div class="sbl" onclick="openAgent('fleet')">
+      <svg viewBox="0 0 24 24"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2M7.5 13A2.5 2.5 0 0 0 5 15.5 2.5 2.5 0 0 0 7.5 18a2.5 2.5 0 0 0 2.5-2.5A2.5 2.5 0 0 0 7.5 13m9 0a2.5 2.5 0 0 0-2.5 2.5 2.5 2.5 0 0 0 2.5 2.5 2.5 2.5 0 0 0 2.5-2.5A2.5 2.5 0 0 0 16.5 13z"/></svg>
+      <span class="sbl-label">Fleet AI</span>
+    </div>
+    <div class="sbl" onclick="openAgent('rate')">
+      <svg viewBox="0 0 24 24"><path d="M7 15h2c0 1.08 1.37 2 3 2s3-.92 3-2c0-1.1-1.04-1.5-3.24-2.03C9.64 12.44 7 11.78 7 9c0-1.79 1.47-3.31 3.5-3.82V3h3v2.18C15.53 5.69 17 7.21 17 9h-2c0-1.08-1.37-2-3-2s-3 .92-3 2c0 1.1 1.04 1.5 3.24 2.03C14.36 11.56 17 12.22 17 15c0 1.79-1.47 3.31-3.5 3.82V21h-3v-2.18C8.47 18.31 7 16.79 7 15z"/></svg>
+      <span class="sbl-label">Rate AI</span>
+    </div>
+    <div class="sbl" onclick="openAgent('ops')">
+      <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm-1-11h2v6h-2zm0 8h2v2h-2z"/></svg>
+      <span class="sbl-label">Ops AI</span>
+    </div>
+  </div>
+  <div class="sb-kpi-block">
+    <div class="sb-kpi">
+      <div class="sb-kpi-label">Monthly Leakage</div>
+      <div class="sb-kpi-val crit">$101.6K</div>
+      <div class="sb-kpi-sub">Addressable this month</div>
+      <div class="sb-bar"><div class="sb-bar-fill" style="width:68%;background:#f87171"></div></div>
+    </div>
+    <div class="sb-kpi">
+      <div class="sb-kpi-label">Gross Margin</div>
+      <div class="sb-kpi-val warn">18.4%</div>
+      <div class="sb-kpi-sub">Target 22%</div>
+      <div class="sb-bar"><div class="sb-bar-fill" style="width:84%;background:#fbbf24"></div></div>
+    </div>
+    <div class="sb-kpi">
+      <div class="sb-kpi-label">Fleet Uptime</div>
+      <div class="sb-kpi-val warn">70%</div>
+      <div class="sb-kpi-sub">21 of 30 trucks active</div>
+      <div class="sb-bar"><div class="sb-bar-fill" style="width:70%;background:#fbbf24"></div></div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ TOPBAR ═══════════════════════════════════════════════ -->
+<div class="topbar">
+  <div class="tb-left">
+    <div class="tb-title">Performance Dashboard</div>
+    <div class="tb-tabs">
+      <div class="tb-tab active" onclick="setTab(this,'All Divisions')">All Divisions</div>
+      <div class="tb-tab" onclick="setTab(this,'Brokerage Division')">Brokerage</div>
+      <div class="tb-tab" onclick="setTab(this,'Asset Division')">Asset</div>
+    </div>
+  </div>
+  <div class="tb-right">
+    <div class="tb-badge crit">⚠ 23 Trailers Flagged</div>
+    <div class="tb-badge warn">Margin gap: −3.6%</div>
+    <select class="tb-sel" id="divFilter" onchange="applyFilter()">
+      <option>All Divisions</option>
+      <option>Brokerage Division</option>
+      <option>Asset Division</option>
+    </select>
+    <select class="tb-sel">
+      <option>This Month</option>
+      <option>This Week</option>
+      <option>This Quarter</option>
+    </select>
+    <button class="ai-btn" onclick="openAgent('fleet')">
+      <div class="ai-btn-dot"></div>AI Advisor
+    </button>
+    <div class="tb-clock" id="tb-clock"></div>
+  </div>
+</div>
+
+<!-- ══ MAIN ═════════════════════════════════════════════════ -->
+<main class="main">
+<div class="main-inner" id="sec-top">
+
+  <!-- ALERT -->
+  <div class="alert-bar">
+    <div class="alert-pulse"></div>
+    <div>
+      <div class="alert-title">Critical — Maintenance Backlog Active</div>
+      <div class="alert-body">23 of 30 trailers flagged. D. Kowalski managing full queue alone — $18,240/mo downtime. Margin at 18.4% vs 22% target. Rate optimization gap persists. <span style="color:#1a4fd8;font-weight:600;cursor:pointer" onclick="openAgent('fleet')">→ Ask AI Advisor</span></div>
+    </div>
+  </div>
+
+  <!-- FINANCIALS -->
+  <div id="sec-fin" class="sec-lbl">Financial Overview</div>
+  <div class="kpi-row c5">
+    <div class="kpi">
+      <div class="kpi-ico blue"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div>
+      <div class="kpi-body"><div class="kpi-lbl">Gross Revenue</div><div class="kpi-val">$2.14M</div><div class="kpi-foot"><span class="kpi-target">Target $2.5M</span><span class="kpi-delta warn">+8.3%</span></div></div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-ico orange"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
+      <div class="kpi-body"><div class="kpi-lbl">Gross Margin</div><div class="kpi-val">18.4%</div><div class="kpi-foot"><span class="kpi-target">Target 22%</span><span class="kpi-delta warn">+1.2%</span></div></div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-ico teal"><svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zm-.5 1.5 1.96 2.5H17V9.5h2.5zM6 18c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm2.22-3c-.55-.61-1.33-1-2.22-1s-1.67.39-2.22 1H3V6h12v9H8.22zm9.78 3c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/></svg></div>
+      <div class="kpi-body"><div class="kpi-lbl">Shipment Revenue</div><div class="kpi-val">$1.87M</div><div class="kpi-foot"><span class="kpi-target">Target $2.1M</span><span class="kpi-delta warn">+5.1%</span></div></div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-ico purple"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg></div>
+      <div class="kpi-body"><div class="kpi-lbl">Margin / Shipment</div><div class="kpi-val">$1,610</div><div class="kpi-foot"><span class="kpi-target">Target $2,000</span><span class="kpi-delta warn">+3.2%</span></div></div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-ico red"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
+      <div class="kpi-body"><div class="kpi-lbl">Headcount</div><div class="kpi-val">40</div><div class="kpi-foot"><span class="kpi-target">Target ≤14 ops</span><span class="kpi-delta crit">No change</span></div></div>
+    </div>
+  </div>
+
+  <!-- ASSET KPIs -->
+  <div id="sec-asset" class="sec-lbl">Asset Operations</div>
+  <div class="kpi-row c4">
+    <div class="kpi"><div class="kpi-ico blue"><svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zm-.5 1.5 1.96 2.5H17V9.5h2.5zM6 18c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm2.22-3c-.55-.61-1.33-1-2.22-1s-1.67.39-2.22 1H3V6h12v9H8.22zm9.78 3c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/></svg></div><div class="kpi-body"><div class="kpi-lbl">Active Trucks</div><div class="kpi-val">21 / 30</div><div class="kpi-foot"><span class="kpi-target">Target 28+</span><span class="kpi-delta warn">70%</span></div></div></div>
+    <div class="kpi"><div class="kpi-ico red"><svg viewBox="0 0 24 24"><path d="M13.78 15.3L19.78 21.3L21.89 19.14L15.89 13.14L13.78 15.3M17.5 11.4C17.5 11.4 19.76 9.23 20.5 6.5C17.78 7.24 15.6 9.5 15.6 9.5L13.93 7.83C14.71 6.24 14.68 4.3 13.5 3C11.13 5.37 11.68 8.42 12.5 9.5L7 15L9 17L14.5 11.5L17.5 11.4M6 15L3 18L5 20L7.4 17.6L6 15Z"/></svg></div><div class="kpi-body"><div class="kpi-lbl">Trailers Flagged</div><div class="kpi-val">23 / 30</div><div class="kpi-foot"><span class="kpi-target">Target &lt;5</span><span class="kpi-delta crit">Critical</span></div></div></div>
+    <div class="kpi"><div class="kpi-ico teal"><svg viewBox="0 0 24 24"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg></div><div class="kpi-body"><div class="kpi-lbl">Miles / Truck</div><div class="kpi-val">7,800</div><div class="kpi-foot"><span class="kpi-target">Target 10,000</span><span class="kpi-delta warn">78%</span></div></div></div>
+    <div class="kpi"><div class="kpi-ico orange"><svg viewBox="0 0 24 24"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg></div><div class="kpi-body"><div class="kpi-lbl">Miles / Driver</div><div class="kpi-val">6,500</div><div class="kpi-foot"><span class="kpi-target">Target 10,000</span><span class="kpi-delta crit">65%</span></div></div></div>
+  </div>
+
+  <!-- DIVISION SCORECARD -->
+  <div class="sec-lbl">Division Scorecard</div>
+  <div class="g2">
+    <div class="div-card active" id="card-brok" onclick="selectDiv('Brokerage Division')">
+      <div class="dc-head"><div><div class="dc-name">Brokerage Division</div><div class="dc-sub">1 Dispatcher · EDI / P44 / Macropoint · 90% Revenue</div></div><div class="dc-badge green">Primary</div></div>
+      <div class="dc-metrics">
+        <div class="dc-met"><div class="dc-met-lbl">Active Loads</div><div class="dc-met-val" style="color:#16a34a">214</div></div>
+        <div class="dc-met"><div class="dc-met-lbl">Avg Margin</div><div class="dc-met-val" style="color:#16a34a">19.1%</div></div>
+        <div class="dc-met"><div class="dc-met-lbl">On-Time %</div><div class="dc-met-val" style="color:#16a34a">86%</div></div>
+        <div class="dc-met"><div class="dc-met-lbl">24/7 Calls</div><div class="dc-met-val" style="color:#d97706">328/wk</div></div>
+      </div>
+      <div class="dc-rev"><div><div class="dc-rev-lbl">Monthly Revenue</div><div class="dc-rev-val" style="color:#16a34a">$1.93M</div><div class="dc-rev-note">brokerage gross</div></div><div class="dc-rev-pct">90%</div></div>
+    </div>
+    <div class="div-card" id="card-asset" onclick="selectDiv('Asset Division')">
+      <div class="dc-head"><div><div class="dc-name">Asset Division</div><div class="dc-sub">30 Trucks · 1 Maintenance Person · 10% Revenue</div></div><div class="dc-badge amber">Under-Optimized</div></div>
+      <div class="dc-metrics">
+        <div class="dc-met"><div class="dc-met-lbl">Trucks On-Duty</div><div class="dc-met-val" style="color:#d97706">21</div></div>
+        <div class="dc-met"><div class="dc-met-lbl">Rev / Truck</div><div class="dc-met-val" style="color:#d97706">$41K</div></div>
+        <div class="dc-met"><div class="dc-met-lbl">Trailer Issues</div><div class="dc-met-val" style="color:#dc2626">23/30</div></div>
+        <div class="dc-met"><div class="dc-met-lbl">Downtime</div><div class="dc-met-val" style="color:#dc2626">$18.2K</div></div>
+      </div>
+      <div class="dc-rev"><div><div class="dc-rev-lbl">Monthly Revenue</div><div class="dc-rev-val" style="color:#d97706">$214K</div><div class="dc-rev-note">asset gross</div></div><div class="dc-rev-pct">10%</div></div>
+    </div>
+  </div>
+
+  <!-- INTEGRATIONS -->
+  <div class="card mb">
+    <div class="card-hdr"><div class="card-title">Tech Stack &amp; Integrations</div><span class="card-action" onclick="openAgent('ops')">→ Ask Ops AI</span></div>
+    <div class="chips">
+      <div class="chip on"><div class="cdot on"></div>EDI</div>
+      <div class="chip on"><div class="cdot on"></div>Project 44 (P44)</div>
+      <div class="chip on"><div class="cdot on"></div>Macropoint</div>
+      <div class="chip on"><div class="cdot on"></div>Motiv App</div>
+      <div class="chip off"><div class="cdot off"></div>ELD Tracking</div>
+      <div class="chip on"><div class="cdot on"></div>Load Building</div>
+      <div class="chip off"><div class="cdot off"></div>24/7 Call System</div>
+    </div>
+  </div>
+
+  <!-- ══ MAINTENANCE ══════════════════════════════════════════ -->
+  <div id="sec-maint" class="sec-lbl">Maintenance Queue</div>
+  <div class="g21">
+    <div class="card-bare">
+      <div style="padding:14px 18px 10px"><div class="card-hdr" style="margin-bottom:0"><div class="card-title">Trailer Status — 23 / 30 Flagged</div><span class="card-action" onclick="openAgent('fleet')">→ Fleet AI Analysis</span></div></div>
+      <div class="maint-row crit"><div><div class="mr-id">TR-003</div><div class="mr-issue">Brake system failure</div></div><div class="mr-right"><div class="spill red">Down</div><div class="mr-cost">$4,680</div></div></div>
+      <div class="maint-row crit"><div><div class="mr-id">TR-007</div><div class="mr-issue">Refrigeration unit malfunction</div></div><div class="mr-right"><div class="spill red">Down</div><div class="mr-cost">$3,810</div></div></div>
+      <div class="maint-row crit"><div><div class="mr-id">TR-015</div><div class="mr-issue">Air suspension sensor fault</div></div><div class="mr-right"><div class="spill red">Down</div><div class="mr-cost">$2,100</div></div></div>
+      <div class="maint-row crit"><div><div class="mr-id">TR-022</div><div class="mr-issue">DOT inspection overdue — grounded</div></div><div class="mr-right"><div class="spill red">Grounded</div><div class="mr-cost">$2,940</div></div></div>
+      <div class="maint-row warn"><div><div class="mr-id">TR-011</div><div class="mr-issue">Tire wear — scheduled</div></div><div class="mr-right"><div class="spill gold">Scheduled</div><div class="mr-cost">$820</div></div></div>
+      <div class="maint-row warn"><div><div class="mr-id">TR-024</div><div class="mr-issue">Oil leak — minor</div></div><div class="mr-right"><div class="spill gold">Monitor</div><div class="mr-cost">$340</div></div></div>
+      <div class="maint-row warn"><div><div class="mr-id">TR-027</div><div class="mr-issue">Landing gear stuck</div></div><div class="mr-right"><div class="spill gold">Scheduled</div><div class="mr-cost">$510</div></div></div>
+      <div class="maint-row warn"><div><div class="mr-id">TR-018</div><div class="mr-issue">Electrical fault — lights</div></div><div class="mr-right"><div class="spill gold">Scheduled</div><div class="mr-cost">$280</div></div></div>
+    </div>
+    <div class="card-bare">
+      <div style="padding:14px 18px 0"><div class="card-title">Invoice Processing</div></div>
+      <div class="inv-cell"><div class="inv-lbl">Assigned Staff</div><div style="font-size:13px;font-weight:700;color:#0e1d3e;margin-bottom:1px">D. Kowalski</div><div class="inv-note">1 Maintenance Person</div></div>
+      <div class="inv-cell"><div class="inv-lbl">Open Invoices</div><div class="inv-big" style="color:#ef4444">23</div><div class="inv-note">pending processing</div></div>
+      <div class="inv-cell"><div class="inv-lbl">Monthly Downtime</div><div class="inv-big" style="color:#ef4444">$18,240</div></div>
+      <div class="inv-callout">Single staff cannot process invoices, schedule repairs, and manage 23 trailers simultaneously.</div>
+    </div>
+  </div>
+
+  <!-- ══ CHANNELS ══════════════════════════════════════════════ -->
+  <div id="sec-channels" class="sec-lbl">Load Channel Performance</div>
+  <div class="ov-strip">
+    <div class="ov-cell"><div class="ov-lbl">Active Loads</div><div class="ov-val" style="color:#1a4fd8">214</div><div class="ov-note">brokerage + asset</div></div>
+    <div class="ov-cell"><div class="ov-lbl">Avg Response</div><div class="ov-val" style="color:#16a34a">1.8h</div><div class="ov-note">Target &lt;2 hrs</div></div>
+    <div class="ov-cell"><div class="ov-lbl">Avg Resolution</div><div class="ov-val" style="color:#d97706">29h</div><div class="ov-note">Target &lt;24 hrs</div></div>
+    <div class="ov-cell"><div class="ov-lbl">Open Issues</div><div class="ov-val" style="color:#ef4444" id="ov-issues">24</div><div class="ov-note">across all channels</div></div>
+  </div>
+  <div class="ch-grid" id="ch-grid">
+    <div class="ch-card ex" data-div="Brokerage Division"><div class="ch-name">EDI Loads</div><div class="ch-sub">Brokerage Division</div><div class="ch-score" style="color:#16a34a">4.4</div><div class="ch-score-lbl">98 loads · 21.4% margin · $892K</div><div class="ch-row"><span class="ch-row-l">Open Issues</span><span class="ch-row-r">1</span></div><div class="ch-row"><span class="ch-row-l">Avg Response</span><span class="ch-row-r">1.2h</span></div><div class="ch-row"><span class="ch-row-l">Response Rate</span><span class="ch-row-r">97%</span></div></div>
+    <div class="ch-card gd" data-div="Brokerage Division"><div class="ch-name">Project 44 (P44)</div><div class="ch-sub">Brokerage Division</div><div class="ch-score" style="color:#d97706">3.9</div><div class="ch-score-lbl">72 loads · 18.9% margin · $654K</div><div class="ch-row"><span class="ch-row-l">Open Issues</span><span class="ch-row-r" style="color:#d97706">4</span></div><div class="ch-row"><span class="ch-row-l">Avg Response</span><span class="ch-row-r">2.8h</span></div><div class="ch-row"><span class="ch-row-l">Response Rate</span><span class="ch-row-r">88%</span></div></div>
+    <div class="ch-card gd" data-div="Brokerage Division"><div class="ch-name">Macropoint</div><div class="ch-sub">Brokerage Division</div><div class="ch-score" style="color:#d97706">3.4</div><div class="ch-score-lbl">44 loads · 16.2% margin · $384K</div><div class="ch-row"><span class="ch-row-l">Open Issues</span><span class="ch-row-r" style="color:#ef4444">7</span></div><div class="ch-row"><span class="ch-row-l">Avg Response</span><span class="ch-row-r">4.1h</span></div><div class="ch-row"><span class="ch-row-l">Response Rate</span><span class="ch-row-r">79%</span></div></div>
+    <div class="ch-card pr" data-div="Asset Division"><div class="ch-name">Asset Loads</div><div class="ch-sub">Asset Division</div><div class="ch-score" style="color:#ef4444">2.8</div><div class="ch-score-lbl">30 loads · 14.8% margin · $214K</div><div class="ch-row"><span class="ch-row-l">Open Issues</span><span class="ch-row-r" style="color:#ef4444">12</span></div><div class="ch-row"><span class="ch-row-l">Avg Response</span><span class="ch-row-r">6.2h</span></div><div class="ch-row"><span class="ch-row-l">Response Rate</span><span class="ch-row-r">68%</span></div></div>
+  </div>
+
+  <!-- ══ TRENDS ═════════════════════════════════════════════════ -->
+  <div id="sec-trends" class="sec-lbl">Trend Analysis</div>
+  <div class="g21">
+    <div class="card"><div class="card-hdr"><div><div class="card-title">Revenue &amp; Margin Trend</div><div class="card-sub">6-month rolling</div></div><span class="card-action" onclick="openAgent('rate')">→ Rate AI</span></div><div class="chart-wrap"><canvas id="revChart"></canvas></div><div class="chart-note">Revenue growing ~$60K/mo. Margin at 18.4% — 3.6 pts below target. Rate floor enforcement via P44 is the primary lever.</div></div>
+    <div class="card"><div class="card-hdr"><div class="card-title">Channel Score</div></div><div id="score-bars"></div><div class="score-warn">Asset 2.8/5 — maintenance backlog is driving dissatisfaction. Clear the 23-trailer queue first.</div></div>
+  </div>
+  <div class="g21">
+    <div class="card"><div class="card-hdr"><div><div class="card-title">Performance Score Trend</div><div class="card-sub">6-month by channel</div></div></div><div class="chart-wrap"><canvas id="csatChart"></canvas></div><div class="chart-note">EDI holding strong at 4.4. Asset declining since October — directly tied to maintenance delays.</div></div>
+    <div class="card"><div class="card-hdr"><div><div class="card-title">Cost Leakage</div><div class="card-sub">Monthly addressable</div></div><span class="card-action" onclick="openAgent('ops')">→ Ops AI</span></div><div class="chart-wrap"><canvas id="costChart"></canvas></div><div style="text-align:center;margin-top:10px"><div style="font-size:22px;font-weight:800;color:#ef4444;letter-spacing:-.03em">$101,600</div><div style="font-size:9px;font-weight:700;color:#a0b5cc;text-transform:uppercase;letter-spacing:.08em;margin-top:2px">Monthly Addressable Leakage</div></div></div>
+  </div>
+
+  <!-- ══ ISSUES ═════════════════════════════════════════════════ -->
+  <div id="sec-issues" class="sec-lbl">Issues — Immediate Action Required</div>
+  <div class="card-bare mb">
+    <div style="padding:14px 18px 0"><div class="card-hdr"><div class="card-title">Top Incidents This Period</div><div class="card-action">View all →</div></div></div>
+    <div style="padding:0 4px">
+      <table class="tbl" id="issues-tbl">
+        <thead><tr><th>ID</th><th>Type</th><th>Division</th><th>Downtime</th><th>Cost</th><th>Root Cause</th><th></th></tr></thead>
+        <tbody>
+          <tr data-div="Asset"><td><span class="t-id">TR-003</span><span class="t-tag">Analysis</span></td><td><span class="t-muted">Trailer Down</span></td><td><span class="t-ghost">Asset</span></td><td><span class="t-red">156 hrs</span></td><td><span class="t-red">$4,680</span></td><td><span class="t-muted">Brake system failure</span></td><td><button class="t-btn on" onclick="openModal('TR-003')">View</button></td></tr>
+          <tr data-div="Brokerage"><td><span class="t-id">LB-4825</span><span class="t-tag">Analysis</span></td><td><span class="t-muted">Load At Risk</span></td><td><span class="t-ghost">Brokerage</span></td><td><span class="t-red">142 hrs</span></td><td><span class="t-red">$3,940</span></td><td><span class="t-muted">Margin below floor</span></td><td><button class="t-btn on" onclick="openModal('LB-4825')">View</button></td></tr>
+          <tr data-div="Asset"><td><span class="t-id">TR-007</span></td><td><span class="t-muted">Trailer Down</span></td><td><span class="t-ghost">Asset</span></td><td><span class="t-red">127 hrs</span></td><td><span class="t-red">$3,810</span></td><td><span class="t-muted">Refrigeration malfunction</span></td><td><button class="t-btn off" disabled>View</button></td></tr>
+          <tr data-div="Brokerage"><td><span class="t-id">LB-4831</span></td><td><span class="t-muted">Missed Window</span></td><td><span class="t-ghost">Brokerage</span></td><td><span class="t-red">118 hrs</span></td><td><span class="t-red">$3,100</span></td><td><span class="t-muted">24/7 call missed</span></td><td><button class="t-btn off" disabled>View</button></td></tr>
+          <tr data-div="Asset"><td><span class="t-id">TR-022</span></td><td><span class="t-muted">DOT Overdue</span></td><td><span class="t-ghost">Asset</span></td><td><span class="t-red">98 hrs</span></td><td><span class="t-red">$2,940</span></td><td><span class="t-muted">Grounded — DOT overdue</span></td><td><button class="t-btn off" disabled>View</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="padding:0 18px 14px"><div class="tbl-foot"><span class="tbl-foot-txt">Total: $18,470 · Avg downtime: 128 hrs</span><button class="t-exp">Export CSV</button></div></div>
+  </div>
+
+  <!-- ══ QUICK WINS ══════════════════════════════════════════════ -->
+  <div class="sec-lbl">Recommended Actions</div>
+  <div class="qw-grid">
+    <div class="qw-card" style="cursor:pointer" onclick="openAgent('fleet')"><div class="qw-num">01</div><div class="qw-title">Fleet AI — Maintenance Automation</div><div class="qw-impact">$18.2K/mo Recovery</div><div class="qw-body">Automate invoice processing — recover $18.2K/mo in downtime + cut resolution time by 60%. <span style="opacity:.8;font-weight:700">→ Ask Fleet AI</span></div></div>
+    <div class="qw-card" style="cursor:pointer" onclick="openAgent('rate')"><div class="qw-num">02</div><div class="qw-title">Rate AI — Margin Optimization</div><div class="qw-impact">$41K/mo Leakage Closed</div><div class="qw-body">Enforce 15% margin floor + P44 benchmarking on every load — close $41K/mo gap. <span style="opacity:.8;font-weight:700">→ Ask Rate AI</span></div></div>
+    <div class="qw-card" style="cursor:pointer" onclick="openAgent('ops')"><div class="qw-num">03</div><div class="qw-title">Ops AI — Call Automation</div><div class="qw-impact">328 Calls/wk Automated</div><div class="qw-body">Add IVR + load-status self-service — handle 70% of 328 weekly calls automatically. <span style="opacity:.8;font-weight:700">→ Ask Ops AI</span></div></div>
+  </div>
+
+</div><!-- /.main-inner -->
+</main>
+
+<!-- ══ ISSUE DETAIL MODAL ══════════════════════════════════════ -->
+<div class="mask" id="mask">
+  <div class="modal">
+    <button class="m-close" onclick="closeModal()">✕</button>
+    <div class="m-head"><h2 id="m-title">—</h2><div class="m-meta" id="m-meta"></div></div>
+    <div class="m-tabs">
+      <button class="m-tab active" id="tab-btn-a" onclick="switchTab('a',this)">Analysis</button>
+      <button class="m-tab" id="tab-btn-b" onclick="switchTab('b',this)">Lifecycle Visual</button>
+    </div>
+    <div id="tab-a" class="m-pane active">
+      <div class="m-body">
+        <div>
+          <div class="m-sec">Timeline</div><div class="tl-box" id="m-tl"></div>
+          <div class="m-sec">Event Log</div><div class="ev-log" id="m-ev"></div>
+        </div>
+        <div>
+          <div class="c-sum" id="m-csum"></div>
+          <div class="m-sec">Cost Breakdown</div><div class="c-tbl" id="m-ctbl"></div>
+          <div class="m-sec">Recommendations</div><div class="recs" id="m-recs"></div>
+          <div class="m-actions">
+            <button class="m-btn pri">Generate Report</button>
+            <button class="m-btn sec">Add to Queue</button>
+            <button class="m-btn sec">Export PDF</button>
+          </div>
+        </div>
+      </div>
+      <div class="m-foot"><div class="staff-box" id="m-staff"></div><button class="m-close-btn" onclick="closeModal()">Close</button></div>
+    </div>
+    <div id="tab-b" class="m-pane"><div style="padding:22px 24px" id="m-lc"></div></div>
+  </div>
+</div>
+
+<!-- ══ AI AGENT PANEL ══════════════════════════════════════════ -->
+<div class="ag-overlay" id="ag-overlay" onclick="closeAgent()"></div>
+<div class="ag-panel" id="ag-panel">
+
+  <!-- Header -->
+  <div class="ag-hdr">
+    <div class="ag-hdr-top">
+      <div class="ag-brand">
+        <span class="ag-brand-name">opsai</span>
+        <span class="ag-brand-sub">LOGISTICS INTELLIGENCE · LIVE</span>
+      </div>
+      <button class="ag-close" onclick="closeAgent()">✕</button>
+    </div>
+    <div class="ag-tagline">Real-time agentic analysis grounded in your live operations data</div>
+    <!-- Tier tabs -->
+    <div class="ag-tabs">
+      <button class="ag-tab active" data-tier="fleet" onclick="switchAgentTier('fleet',this)">
+        <span class="ag-tab-icon">◈</span>Fleet Optimizer
+      </button>
+      <button class="ag-tab" data-tier="rate" onclick="switchAgentTier('rate',this)">
+        <span class="ag-tab-icon">⬡</span>Rate Analyst
+      </button>
+      <button class="ag-tab" data-tier="ops" onclick="switchAgentTier('ops',this)">
+        <span class="ag-tab-icon">◇</span>Ops Advisor
+      </button>
+    </div>
+  </div>
+
+  <!-- Body split -->
+  <div class="ag-body">
+
+    <!-- Left: scenario selector -->
+    <div class="ag-left">
+      <div class="ag-tier-desc">
+        <div class="ag-tier-sublbl" id="ag-tier-sublbl"></div>
+        <div class="ag-tier-txt" id="ag-tier-txt"></div>
+      </div>
+      <div class="ag-scen-list">
+        <div class="ag-scen-lbl">SELECT SCENARIO</div>
+        <div id="ag-scen-items"></div>
+      </div>
+      <div class="ag-run-wrap">
+        <button class="ag-run-btn" id="ag-run-btn" onclick="runAgent()" disabled>▶ RUN AGENT</button>
+      </div>
+    </div>
+
+    <!-- Right: output -->
+    <div class="ag-right">
+      <div class="ag-query-bar" id="ag-query-bar" style="display:none">
+        <div class="ag-query-lbl" id="ag-query-lbl-color">QUERY TO AGENT</div>
+        <div class="ag-query-txt" id="ag-query-txt"></div>
+      </div>
+      <div class="ag-output" id="ag-output">
+        <div class="ag-idle">
+          <div class="ag-idle-icon" id="ag-idle-icon">◈</div>
+          <div class="ag-idle-txt" id="ag-idle-txt">Select a scenario and run the agent to see agentic analysis grounded in your live operations data.</div>
+        </div>
+      </div>
+      <div class="ag-status">
+        <div class="ag-status-node">
+          <div class="ag-status-dot" id="ag-sd-fleet" style="background:#1a2d4a"></div>
+          <span class="ag-status-lbl" id="ag-sl-fleet" style="color:#4a6080">FLEET</span>
+        </div>
+        <div class="ag-status-node">
+          <div class="ag-status-dot" id="ag-sd-rate" style="background:#1a2d4a"></div>
+          <span class="ag-status-lbl" id="ag-sl-rate" style="color:#4a6080">RATE</span>
+        </div>
+        <div class="ag-status-node">
+          <div class="ag-status-dot" id="ag-sd-ops" style="background:#1a2d4a"></div>
+          <span class="ag-status-lbl" id="ag-sl-ops" style="color:#4a6080">OPS</span>
+        </div>
+        <div class="ag-version">OPSAI CORTEX · v1.0 · MAR 2026</div>
+      </div>
+    </div>
+
+  </div><!-- /.ag-body -->
+</div><!-- /.ag-panel -->
+
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
