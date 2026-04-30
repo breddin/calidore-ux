@@ -1,0 +1,38 @@
+{
+  "_comment": "calidore-ux per-directory Claude Code settings.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/bennettreddin/.pulse/hooks/session-start-dashboard.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/bennettreddin/.pulse/hooks/focus-lock.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(/Users/bennettreddin/.pulse/hooks/pulse-bump.sh:*)",
+      "Bash(echo * > .focus-lock)",
+      "Bash(rm .focus-lock)",
+      "Bash(touch .focus-lock-bypass)",
+      "Read(/Volumes/BReddinDocuments/DocumentsHDD/Development/calidore/calidore-ux/pulse/**)",
+      "Edit(/Volumes/BReddinDocuments/DocumentsHDD/Development/calidore/calidore-ux/pulse/**)",
+      "Write(/Volumes/BReddinDocuments/DocumentsHDD/Development/calidore/calidore-ux/pulse/**)"
+    ]
+  }
+}
