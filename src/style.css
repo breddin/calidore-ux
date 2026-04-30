@@ -60,7 +60,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--navy-mid)
 .sb-kpi{margin-bottom:12px}
 .sb-kpi-label{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3);margin-bottom:3px}
 .sb-kpi-val{font-size:18px;font-weight:700;letter-spacing:-.02em;line-height:1}
-.sb-kpi-val.warn{color:#fbbf24}.sb-kpi-val.crit{color:#f87171}.sb-kpi-val.ok{color:#6ee7b7}
+.sb-kpi-val.warn{color:#f59e0b}.sb-kpi-val.crit{color:#f87171}.sb-kpi-val.ok{color:#6ee7b7}
 .sb-kpi-sub{font-size:9px;color:rgba(255,255,255,.3);margin-top:2px}
 .sb-bar{height:3px;background:rgba(255,255,255,.1);border-radius:2px;margin-top:6px}
 .sb-bar-fill{height:100%;border-radius:2px}
