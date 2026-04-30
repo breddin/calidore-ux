@@ -3,7 +3,7 @@ id: port-html-prototype-to-react
 title: Port v3_1 prototype look-and-feel into Vite/JS source
 priority: P1
 status: active
-completion: 75
+completion: 85
 last_touched: 2026-04-30
 paths:
   - /Volumes/BReddinDocuments/DocumentsHDD/Development/calidore/calidore-ux/src/style.css
@@ -13,6 +13,7 @@ paths:
   - /Volumes/BReddinDocuments/DocumentsHDD/Development/calidore/calidore-ux/src/data.js
   - /Volumes/BReddinDocuments/DocumentsHDD/Development/calidore/calidore-ux/src/_v3_1-port-notes.md
   - /Volumes/BReddinDocuments/DocumentsHDD/Development/calidore/calidore-ux/index.html
+  - /Volumes/BReddinDocuments/DocumentsHDD/Development/calidore/calidore-ux/.gitignore
 ---
 
 # Port v3_1 prototype to Vite/JS source

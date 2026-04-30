@@ -13,3 +13,7 @@ lambda/src/node_modules/
 
 # System files
 .DS_Store
+
+# PULSE framework — per-session ephemeral focus lock + bypass
+.focus-lock
+.focus-lock-bypass
