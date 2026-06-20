@@ -1,21 +1,32 @@
-import { SSMClient, GetParameterCommand } from '@aws-sdk/client-ssm';
+import { SecretsManagerClient, GetSecretValueCommand } from '@aws-sdk/client-secrets-manager';
 
-const ssm = new SSMClient({});
+const secrets = new SecretsManagerClient({});
 let cachedKey = null;
 
 async function getApiKey() {
   if (cachedKey) return cachedKey;
-  const { Parameter } = await ssm.send(new GetParameterCommand({
-    Name: process.env.ANTHROPIC_API_KEY_PARAM,
-    WithDecryption: true
+  const { SecretString } = await secrets.send(new GetSecretValueCommand({
+    SecretId: process.env.ANTHROPIC_API_KEY_SECRET
   }));
-  cachedKey = Parameter.Value;
+  cachedKey = SecretString;
   return cachedKey;
 }
 
 export const handler = async (event) => {
+  const method = event.requestContext?.http?.method;
+  const path = event.requestContext?.http?.path;
+
+  // Health check
+  if (method === 'GET' && path === '/') {
+    return {
+      statusCode: 200,
+      headers: { ...corsHeaders(), 'content-type': 'application/json' },
+      body: JSON.stringify({ status: 'ok', service: 'calidore-ux-proxy' })
+    };
+  }
+
   // CORS preflight
-  if (event.requestContext?.http?.method === 'OPTIONS') {
+  if (method === 'OPTIONS') {
     return {
       statusCode: 204,
       headers: corsHeaders()

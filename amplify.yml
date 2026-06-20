@@ -1,0 +1,19 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      # VITE_API_URL is injected from the Amplify branch/app environment
+      # variables (set by scripts/deploy.sh after the SAM stack publishes
+      # its ApiUrl output). Vite reads it at build time via import.meta.env.
+      commands:
+        - npm run build
+  artifacts:
+    baseDirectory: dist
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*

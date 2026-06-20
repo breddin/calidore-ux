@@ -9,7 +9,7 @@ Globals:
     MemorySize: 256
     Environment:
       Variables:
-        ANTHROPIC_API_KEY_PARAM: /calidore-ux/anthropic-api-key
+        ANTHROPIC_API_KEY_SECRET: calidore-ux/anthropic-api-key
 
 Resources:
 
@@ -20,8 +20,8 @@ Resources:
       Handler: index.handler
       CodeUri: src/
       Policies:
-        - SSMParameterReadPolicy:
-            ParameterName: calidore-ux/anthropic-api-key
+        - AWSSecretsManagerGetSecretValuePolicy:
+            SecretArn: !Sub "arn:${AWS::Partition}:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:calidore-ux/anthropic-api-key-*"
       Events:
         ProxyPost:
           Type: HttpApi
@@ -35,6 +35,12 @@ Resources:
             ApiId: !Ref ProxyApi
             Path: /api/messages
             Method: OPTIONS
+        HealthCheck:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref ProxyApi
+            Path: /
+            Method: GET
 
   ProxyApi:
     Type: AWS::Serverless::HttpApi
