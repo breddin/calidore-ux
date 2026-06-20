@@ -14,7 +14,7 @@
 set -euo pipefail
 
 # ── Config (override via environment) ─────────────────────────────────
-AWS_PROFILE="${AWS_PROFILE:-breddin-personal}"
+AWS_PROFILE="${AWS_PROFILE:-bennie}"
 STACK_NAME="${STACK_NAME:-calidore-ux-proxy}"
 LAMBDA_REGION="${LAMBDA_REGION:-us-east-1}"
 AMPLIFY_APP_ID="${AMPLIFY_APP_ID:-d3iss5fysy55r}"

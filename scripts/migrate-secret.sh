@@ -18,7 +18,7 @@
 #
 set -euo pipefail
 
-AWS_PROFILE="${AWS_PROFILE:-breddin-personal}"
+AWS_PROFILE="${AWS_PROFILE:-bennie}"
 REGION="${LAMBDA_REGION:-us-east-1}"
 SSM_NAME="${SSM_NAME:-/calidore-ux/anthropic-api-key}"
 SECRET_NAME="${SECRET_NAME:-calidore-ux/anthropic-api-key}"
