@@ -22,15 +22,15 @@
   --purple:    #7c3aed;
   --muted:     #7a99bb;
   --muted-lo:  #a0b5cc;
-  /* Agent panel (aderit dark) */
-  --ag-bg:     #080c14;
-  --ag-surf:   #0d1424;
-  --ag-card:   #111d30;
-  --ag-border: #1a2d4a;
-  --ag-b2:     #1e3a5f;
-  --ag-text:   #dce8f5;
-  --ag-muted:  #4a6080;
-  --ag-muted2: #6a85a5;
+  /* Agent panel (aderit daylight — light theme for readability) */
+  --ag-bg:     #f6f9fe;
+  --ag-surf:   #eef3fb;
+  --ag-card:   #ffffff;
+  --ag-border: #d7e2f2;
+  --ag-b2:     #b9cce8;
+  --ag-text:   #1c2e4a;
+  --ag-muted:  #5b7799;
+  --ag-muted2: #41597a;
   /* Agent tier colors */
   --t1: #4A6FA5; /* Fleet Optimizer — steel blue */
   --t2: #2A9D8F; /* Rate Analyst   — teal */
@@ -342,21 +342,21 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--navy-mid)
 .lc-im-val{font-size:19px;font-weight:800;color:#ef4444;letter-spacing:-.02em}
 
 /* ══════════════════════════════════════════════════════════
-   AI AGENT PANEL  (Aderit dark theme, slides in from right)
+   AI AGENT PANEL  (Aderit daylight theme, slides in from right)
 ══════════════════════════════════════════════════════════ */
-.ag-overlay{position:fixed;inset:0;background:rgba(8,12,20,.6);z-index:400;opacity:0;pointer-events:none;transition:opacity .3s}
+.ag-overlay{position:fixed;inset:0;background:rgba(14,29,62,.35);z-index:400;opacity:0;pointer-events:none;transition:opacity .3s}
 .ag-overlay.open{opacity:1;pointer-events:auto}
 .ag-panel{position:fixed;top:0;right:0;bottom:0;width:640px;background:var(--ag-bg);z-index:401;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;font-family:'DM Sans',sans-serif}
 .ag-panel.open{transform:translateX(0)}
 
 /* Agent panel header */
-.ag-hdr{background:linear-gradient(135deg,#1B365D 0%,#0d1830 100%);border-bottom:1px solid var(--ag-b2);padding:0 24px}
+.ag-hdr{background:linear-gradient(135deg,#e3edfb 0%,#d3e1f5 100%);border-bottom:1px solid var(--ag-b2);padding:0 24px}
 .ag-hdr-top{display:flex;align-items:center;justify-content:space-between;padding:16px 0 0}
 .ag-brand{display:flex;align-items:baseline;gap:10px}
 .ag-brand-name{font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700;color:#2A9D8F;letter-spacing:-.02em}
 .ag-brand-sub{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ag-muted);letter-spacing:.15em;font-weight:600}
-.ag-close{width:30px;height:30px;background:rgba(255,255,255,.06);border:1px solid var(--ag-border);border-radius:6px;color:var(--ag-muted2);font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
-.ag-close:hover{background:rgba(255,255,255,.12);color:var(--ag-text)}
+.ag-close{width:30px;height:30px;background:rgba(14,29,62,.04);border:1px solid var(--ag-border);border-radius:6px;color:var(--ag-muted2);font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.ag-close:hover{background:rgba(14,29,62,.09);color:var(--ag-text)}
 .ag-tagline{padding:6px 0 0;font-size:11px;color:var(--ag-muted2);font-style:italic}
 
 /* Agent tier tabs */
@@ -380,8 +380,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--navy-mid)
 .ag-scen-list{padding:14px 16px;flex:1;overflow-y:auto}
 .ag-scen-lbl{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--ag-muted);font-weight:700;letter-spacing:.15em;margin-bottom:10px}
 .ag-scen-item{padding:10px 12px;border-radius:6px;border:1px solid var(--ag-border);margin-bottom:7px;cursor:pointer;transition:all .2s}
-.ag-scen-item:hover{border-color:var(--ag-b2);background:rgba(255,255,255,.03)}
-.ag-scen-item.active{background:rgba(255,255,255,.05)}
+.ag-scen-item:hover{border-color:var(--ag-b2);background:rgba(14,29,62,.03)}
+.ag-scen-item.active{background:rgba(14,29,62,.05)}
 .ag-scen-name{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.05em;margin-bottom:3px}
 .ag-scen-preview{font-size:11px;color:var(--ag-muted);line-height:1.4}
 .ag-run-wrap{padding:14px 16px;border-top:1px solid var(--ag-border)}
@@ -424,8 +424,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--navy-mid)
 .ag-version{margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--ag-muted);letter-spacing:.08em}
 
 /* Context injection banner */
-.ag-ctx-bar{background:rgba(26,79,216,.08);border:1px solid rgba(26,79,216,.2);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:11px;color:#7ab0e0;line-height:1.5}
-.ag-ctx-bar strong{color:#93b4e8;font-weight:700}
+.ag-ctx-bar{background:rgba(26,79,216,.08);border:1px solid rgba(26,79,216,.2);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:11px;color:#2456b8;line-height:1.5}
+.ag-ctx-bar strong{color:#1a4fd8;font-weight:700}
 
 /* Error state */
 .ag-error{padding:12px 14px;background:rgba(224,82,82,.1);border:1px solid rgba(224,82,82,.3);border-radius:6px;color:#e05252;font-size:11px}

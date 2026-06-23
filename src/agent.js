@@ -58,7 +58,7 @@ export function renderAgentTier() {
   list.innerHTML = t.scenarios.map(s => {
     const active = agState.scenario === s.id;
     return '<div class="ag-scen-item' + (active ? ' active' : '') + '" onclick="selectScenario(\'' + s.id + '\')" style="' + (active ? 'border-color:' + c + ';background:' + hexToRgba(c, .06) + ';' : '') + '">' +
-      '<div class="ag-scen-name" style="color:' + (active ? c : '#6a85a5') + '">' + s.label + '</div>' +
+      '<div class="ag-scen-name" style="color:' + (active ? c : '#41597a') + '">' + s.label + '</div>' +
       '<div class="ag-scen-preview">' + s.prompt.slice(0, 70) + '…</div>' +
       '</div>';
   }).join('');
@@ -115,8 +115,8 @@ function renderThinking(t, c) {
     t.thinking.map((s, i) => {
       const past = i < step, active = i === step, future = i > step;
       return '<div class="ag-trace-step" style="opacity:' + (future ? 0.15 : 1) + ';animation:' + (i <= step ? 'fadeSlideIn .4s ' + i * .05 + 's both' : 'none') + '">' +
-        '<div class="ag-trace-dot" style="background:' + (future ? '#1a2d4a' : c) + ';box-shadow:' + (active ? '0 0 8px ' + c : 'none') + ';animation:' + (active ? 'tracePulse 1s infinite' : 'none') + '"></div>' +
-        '<span class="ag-trace-txt" style="color:' + (past ? '#6a85a5' : active ? c : '#4a6080') + '">' + s + '</span></div>';
+        '<div class="ag-trace-dot" style="background:' + (future ? '#cdd9ec' : c) + ';box-shadow:' + (active ? '0 0 8px ' + c : 'none') + ';animation:' + (active ? 'tracePulse 1s infinite' : 'none') + '"></div>' +
+        '<span class="ag-trace-txt" style="color:' + (past ? '#41597a' : active ? c : '#8aa0bd') + '">' + s + '</span></div>';
     }).join('');
 }
 
